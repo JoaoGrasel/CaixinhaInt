@@ -16,7 +16,7 @@ public class ListaOrdenadaCaixinhas{
 		
 		if(quantidade = 0){
 	
-			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, VOLTA NELA MESMA OU NULL?);
+			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento)
 			primeira = caixinhaInserida;		
 			ultima = caixinhaInserida;
 			quantidade = 1;		
@@ -25,7 +25,7 @@ public class ListaOrdenadaCaixinhas{
 
 			CaixinhaInt caixinhaAtual = primeira;
 
-			while(elemento > caixinhaAtual.getDado){
+			while(elemento > caixinhaAtual.getElemento){
 			
 				caixinhaAtual = caixinhaAtual.getProxima;
 
@@ -33,8 +33,66 @@ public class ListaOrdenadaCaixinhas{
 
 	}
 
+	
+	public void insereDepoisAtual(int elemento){
+		
+		if(this.atual != null){
+		
+			if(elemento > this.atual.getElemento){
+				
+				CaixinhaInt caixinhaInserida = new Caixinha(elemento);
+				CaixinhaInt proximaCaixinha = this.atual.getProxima();
+				this.atual.setProxima(caixinhaInserida);
+				proximaCaixinha.setAnterior(caixinhaInserida);
+				caixinhaInserida.setAnterior(this.atual);
+				caixinhaInserida.setProxima(proximaCaixinha);			
+			}
+		}			
 
-	public void 
+	public void insereAntesAtual(int elemento){
+		
+		if(this.atual != null){
+
+			if(elemento < this.atual.getElemento)
+
+				CaixinhaInt caixinhaInserida = new Caixinha(elemento);
+				CaixinhaInt caixinhaAnterior = this.atual.getAnterior();
+				this.atual.setAnterior(caixinhaInserida);
+				caixinhaAnterior.setProxima(caixinhaInserida);
+				caixinhaInserida.setAnterior(caixinhaAnterior);
+				caixinhaInserida.setProxima(atual)		
+			}
+		}
+	}
+
+	public void excluiAtual() throws NullPointerException{ --> ISSO MESMO?
+			
+		if(this.atual != null){
+			CaixinhaInt proximaCaixinha = this.atual.getProxima();
+			CaixinhaInt caixinhaAnterior = this.atual.getAnterior();
+			proximaCaixinha.setAnterior(caixinhaAnterior);
+			caixinhaAnterior.setProxima(proximaCaixinha);
+			this.atual = null;
+		} else {
+			throw NullPointerException) --> ISSO MESMO?
+	}
+
+
+
+	public CaixinhaInt acessaAtual(){
+		return atual;
+	}
+	
+	
+	public void cursorParaUltima(){
+		this.atual = ultima;
+	}
+		
+
+	public void cursorParaPrimeira(){
+		this.atual = primeira;
+
+	}
 
 
 

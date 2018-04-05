@@ -1,17 +1,17 @@
 public class CaixinhaInt{
 	
-	int dado;
+	int elemento;
 	CaixinhaInt proxima;
 	CaixinhaInt anterior;
 
-	public CaixinhaInt(int dado,CaixinhaInt proxima, CaixinhaInt anterior){
-		this.dado = dado;
+	public CaixinhaInt(int elemento){
+		this.elemento = elemento;
 		this.proxima = proxima;
 		this.anterior = anterior;
 	}
 
-	public void setDado(int dado){
-		this.dado = dado;
+	public void setElemento(int elemento){
+		this.elemento = elemento;
 	}	
 	
 	public void setProxima(CaixinhaInt proxima){
@@ -22,8 +22,8 @@ public class CaixinhaInt{
 		this.anterior = anterior;	
 	}	
 
-	public int getDado(){
-		return dado;
+	public int getElemento(){
+		return elemento;
 	}	
 
 	public CaixinhaInt getProxima(){
