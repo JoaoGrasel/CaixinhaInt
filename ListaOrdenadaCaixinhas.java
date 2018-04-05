@@ -12,6 +12,8 @@ public class ListaOrdenadaCaixinhas{
 		quantidade = 0;
 	}
 
+	
+	
 	public void inserirOrdenado(int elemento){
 		
 		if(quantidade = 0){
@@ -84,16 +86,30 @@ public class ListaOrdenadaCaixinhas{
 	}
 	
 	
-	public void cursorParaUltima(){
+	private void cursorParaUltima(){
 		this.atual = ultima;
 	}
 		
 
-	public void cursorParaPrimeira(){
+	private void cursorParaPrimeira(){
 		this.atual = primeira;
 
 	}
 
+	private void avancaCursor(int quantidade){
+		for(int i=0, i++, i=quantidade){
+			this.atual = this.atual.getProximo();
+		}	
+	}
+
+	private void voltaCursor(int quantidade){
+		for(int i=0, i++, i=quantidade){
+			this.atual = this.atual.getAnterior();		
+		}
+	}
+
+	
+ 
 
 
 
