@@ -24,12 +24,25 @@ public class ListaOrdenadaCaixinhas{
 			quantidade = 1;		
 
 		} else {
-
+			
+			insereFake(elemento);
+			
 			CaixinhaInt caixinhaAtual = primeira;
+			
 
 			while(elemento > caixinhaAtual.getElemento){
-			
+		
 				caixinhaAtual = caixinhaAtual.getProxima;
+			}
+
+			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento);
+			caixinhaInt caixinhaAnterior = caixinhaAtual.getAnterior;
+			caixinhaAnterior.setProxima(caixinhaInserida);
+			caixinhaAtual.setAnterior(caixinhaInserida);	
+			
+			removeFake();
+
+			
 
 		}	
 
@@ -108,7 +121,24 @@ public class ListaOrdenadaCaixinhas{
 		}
 	}
 
-	
+	private void insereFake(int elemento){	
+		CaixinhaInt caixinhaFake = new CaixinhaInt(elemento);
+		this.ultima.setProximo(caixinhaFake);
+		this.primeira.setAnterior(caixinhaFake);
+		caixinhaFake.setProxima(this.primeira);
+		caixinhaFake.setAnterior(this.ultima);			
+		this.ultima = caixinhaFake;
+		this.quantidade++;
+	}
+
+	private void removeFake(){
+		CaixinhaInt caixinhaAnterior = this.ultima.getAnterior();
+		caixinhaAnterior.setProxima(this.primeira);
+		this.primeira.setAnterior(caixinhaAnterior);
+		this.ultima = caixinhaAnterior);
+		this.quantidade--;
+	}
+		
  
 
 
