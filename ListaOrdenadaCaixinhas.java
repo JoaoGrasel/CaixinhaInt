@@ -25,7 +25,7 @@ public class ListaOrdenadaCaixinhas{
 
 		} else {
 			
-			insereFake(elemento);
+			inserirFake(elemento);
 			
 			CaixinhaInt caixinhaAtual = primeira;
 			
@@ -40,13 +40,11 @@ public class ListaOrdenadaCaixinhas{
 			caixinhaAnterior.setProxima(caixinhaInserida);
 			caixinhaAtual.setAnterior(caixinhaInserida);	
 			
-			removeFake();
-
-			
-
+			removerFake();
 		}	
 
 	}
+
 
 	
 	public void insereDepoisAtual(int elemento){
@@ -61,6 +59,8 @@ public class ListaOrdenadaCaixinhas{
 				proximaCaixinha.setAnterior(caixinhaInserida);
 				caixinhaInserida.setAnterior(this.atual);
 				caixinhaInserida.setProxima(proximaCaixinha);			
+			} else {
+			
 			}
 		}			
 
@@ -76,7 +76,9 @@ public class ListaOrdenadaCaixinhas{
 				caixinhaAnterior.setProxima(caixinhaInserida);
 				caixinhaInserida.setAnterior(caixinhaAnterior);
 				caixinhaInserida.setProxima(atual)		
-			}
+			} else { 
+			
+			} 
 		}
 	}
 
@@ -121,7 +123,7 @@ public class ListaOrdenadaCaixinhas{
 		}
 	}
 
-	private void insereFake(int elemento){	
+	private void inserirFake(int elemento){	
 		CaixinhaInt caixinhaFake = new CaixinhaInt(elemento);
 		this.ultima.setProximo(caixinhaFake);
 		this.primeira.setAnterior(caixinhaFake);
@@ -131,7 +133,7 @@ public class ListaOrdenadaCaixinhas{
 		this.quantidade++;
 	}
 
-	private void removeFake(){
+	private void removerFake(){
 		CaixinhaInt caixinhaAnterior = this.ultima.getAnterior();
 		caixinhaAnterior.setProxima(this.primeira);
 		this.primeira.setAnterior(caixinhaAnterior);
