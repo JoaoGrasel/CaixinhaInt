@@ -1,13 +1,16 @@
 public class CaixinhaInt{
 	
 	int elemento;
-	CaixinhaInt proxima;
+    int ID;
+    CaixinhaInt proxima;
 	CaixinhaInt anterior;
+    
 
-	public CaixinhaInt(int elemento){
+	public CaixinhaInt(int elemento, int ID){
 		this.elemento = elemento;
 		this.proxima = proxima;
 		this.anterior = anterior;
+        this.ID = ID;
 	}
 
 	public void setElemento(int elemento){
@@ -31,8 +34,13 @@ public class CaixinhaInt{
 	}	
 
 	public CaixinhaInt getAnterior(){
-		return proxima;
+		return anterior;
 	}
 	
+    public int getID(){
+        return ID;
+    }
+    
+    
 }
 

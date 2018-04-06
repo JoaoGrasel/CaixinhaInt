@@ -4,12 +4,14 @@ public class ListaOrdenadaCaixinhas{
 	CaixinhaInt primeira;
 	CaixinhaInt ultima;
 	int quantidade;
+    int proximoID;
 	
 	public ListaOrdenadaCaixinhas(){
 		atual = null;
 		primeira = null;
 		ultima = null;
 		quantidade = 0;
+        proximoID = 1;
 	}
 
 	
@@ -18,10 +20,11 @@ public class ListaOrdenadaCaixinhas{
 		
 		if(quantidade = 0){
 	
-			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento)
+            CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, this.proximoID);
 			primeira = caixinhaInserida;		
 			ultima = caixinhaInserida;
-			quantidade = 1;		
+			quantidade++;
+            proximoID++;
 
 		} else {
 			
@@ -35,7 +38,7 @@ public class ListaOrdenadaCaixinhas{
 				caixinhaAtual = caixinhaAtual.getProxima;
 			}
 
-			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento);
+			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, proximoID);
 			caixinhaInt caixinhaAnterior = caixinhaAtual.getAnterior;
 			caixinhaAnterior.setProxima(caixinhaInserida);
 			caixinhaAtual.setAnterior(caixinhaInserida);	
@@ -53,7 +56,7 @@ public class ListaOrdenadaCaixinhas{
 		
 			if(elemento > this.atual.getElemento){
 				
-				CaixinhaInt caixinhaInserida = new Caixinha(elemento);
+				CaixinhaInt caixinhaInserida = new Caixinha(elemento, proximoID);
 				CaixinhaInt proximaCaixinha = this.atual.getProxima();
 				this.atual.setProxima(caixinhaInserida);
 				proximaCaixinha.setAnterior(caixinhaInserida);
@@ -70,7 +73,7 @@ public class ListaOrdenadaCaixinhas{
 
 			if(elemento < this.atual.getElemento)
 
-				CaixinhaInt caixinhaInserida = new Caixinha(elemento);
+				CaixinhaInt caixinhaInserida = new Caixinha(elemento, proximoID);
 				CaixinhaInt caixinhaAnterior = this.atual.getAnterior();
 				this.atual.setAnterior(caixinhaInserida);
 				caixinhaAnterior.setProxima(caixinhaInserida);
@@ -124,7 +127,7 @@ public class ListaOrdenadaCaixinhas{
 	}
 
 	private void inserirFake(int elemento){	
-		CaixinhaInt caixinhaFake = new CaixinhaInt(elemento);
+		CaixinhaInt caixinhaFake = new CaixinhaInt(elemento, 0);
 		this.ultima.setProximo(caixinhaFake);
 		this.primeira.setAnterior(caixinhaFake);
 		caixinhaFake.setProxima(this.primeira);
