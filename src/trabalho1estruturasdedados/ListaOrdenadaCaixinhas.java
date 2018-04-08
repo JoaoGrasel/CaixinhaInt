@@ -1,3 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package trabalho1estruturasdedados;
+
 public class ListaOrdenadaCaixinhas{
 	
 	CaixinhaInt atual;
@@ -14,11 +21,9 @@ public class ListaOrdenadaCaixinhas{
         proximoID = 1;
 	}
 
-	
-	
 	public void inserirOrdenado(int elemento){
 		
-		if(quantidade = 0){
+		if(quantidade == 0){
 	
             CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, this.proximoID);
 			primeira = caixinhaInserida;		
@@ -33,13 +38,13 @@ public class ListaOrdenadaCaixinhas{
 			CaixinhaInt caixinhaAtual = primeira;
 			
 
-			while(elemento > caixinhaAtual.getElemento){
+			while(elemento > caixinhaAtual.getElemento()){
 		
-				caixinhaAtual = caixinhaAtual.getProxima;
+				caixinhaAtual = caixinhaAtual.getProxima();
 			}
 
 			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, proximoID);
-			caixinhaInt caixinhaAnterior = caixinhaAtual.getAnterior;
+			CaixinhaInt caixinhaAnterior = caixinhaAtual.getAnterior();
 			caixinhaAnterior.setProxima(caixinhaInserida);
 			caixinhaAtual.setAnterior(caixinhaInserida);	
 			
@@ -54,9 +59,9 @@ public class ListaOrdenadaCaixinhas{
 		
 		if(this.atual != null){
 		
-			if(elemento > this.atual.getElemento){
+			if(elemento > this.atual.getElemento()){
 				
-				CaixinhaInt caixinhaInserida = new Caixinha(elemento, proximoID);
+				CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, proximoID);
 				CaixinhaInt proximaCaixinha = this.atual.getProxima();
 				this.atual.setProxima(caixinhaInserida);
 				proximaCaixinha.setAnterior(caixinhaInserida);
@@ -65,27 +70,28 @@ public class ListaOrdenadaCaixinhas{
 			} else {
 			
 			}
-		}			
+		}
+	}		
 
 	public void insereAntesAtual(int elemento){
 		
 		if(this.atual != null){
 
-			if(elemento < this.atual.getElemento)
+			if(elemento < this.atual.getElemento()) {
 
-				CaixinhaInt caixinhaInserida = new Caixinha(elemento, proximoID);
+				CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, proximoID);
 				CaixinhaInt caixinhaAnterior = this.atual.getAnterior();
 				this.atual.setAnterior(caixinhaInserida);
 				caixinhaAnterior.setProxima(caixinhaInserida);
 				caixinhaInserida.setAnterior(caixinhaAnterior);
-				caixinhaInserida.setProxima(atual)		
+				caixinhaInserida.setProxima(atual);	
 			} else { 
 			
 			} 
 		}
 	}
 
-	public void excluiAtual() throws NullPointerException{ --> ISSO MESMO?
+	public void excluiAtual() throws NullPointerException { //--> ISSO MESMO?
 			
 		if(this.atual != null){
 			CaixinhaInt proximaCaixinha = this.atual.getProxima();
@@ -94,20 +100,17 @@ public class ListaOrdenadaCaixinhas{
 			caixinhaAnterior.setProxima(proximaCaixinha);
 			this.atual = null;
 		} else {
-			throw NullPointerException) --> ISSO MESMO?
+			throw new NullPointerException(); //--> ISSO MESMO?
+		}
 	}
-
-
 
 	public CaixinhaInt acessaAtual(){
 		return atual;
 	}
 	
-	
 	private void cursorParaUltima(){
 		this.atual = ultima;
 	}
-		
 
 	private void cursorParaPrimeira(){
 		this.atual = primeira;
@@ -115,20 +118,20 @@ public class ListaOrdenadaCaixinhas{
 	}
 
 	private void avancaCursor(int quantidade){
-		for(int i=0, i++, i=quantidade){
-			this.atual = this.atual.getProximo();
+		for(int i = 0; i < quantidade; i++){
+			this.atual = this.atual.getProxima();
 		}	
 	}
 
 	private void voltaCursor(int quantidade){
-		for(int i=0, i++, i=quantidade){
+		for(int i=0; i < quantidade; i++){
 			this.atual = this.atual.getAnterior();		
 		}
 	}
 
 	private void inserirFake(int elemento){	
 		CaixinhaInt caixinhaFake = new CaixinhaInt(elemento, 0);
-		this.ultima.setProximo(caixinhaFake);
+		this.ultima.setProxima(caixinhaFake);
 		this.primeira.setAnterior(caixinhaFake);
 		caixinhaFake.setProxima(this.primeira);
 		caixinhaFake.setAnterior(this.ultima);			
@@ -140,12 +143,8 @@ public class ListaOrdenadaCaixinhas{
 		CaixinhaInt caixinhaAnterior = this.ultima.getAnterior();
 		caixinhaAnterior.setProxima(this.primeira);
 		this.primeira.setAnterior(caixinhaAnterior);
-		this.ultima = caixinhaAnterior);
+		this.ultima = caixinhaAnterior;
 		this.quantidade--;
 	}
-		
- 
-
-
 
 }
