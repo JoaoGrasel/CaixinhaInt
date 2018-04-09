@@ -7,85 +7,72 @@ package trabalho1estruturasdedados;
 
 public class ListaOrdenadaCaixinhas{
 	
-	CaixinhaInt atual;
-	CaixinhaInt primeira;
-	CaixinhaInt ultima;
-	int quantidade;
-    	int proximoID;
+	private CaixinhaInt atual;
+	private CaixinhaInt primeira;
+	private CaixinhaInt ultima;
+	private int quantidade;
+    private int proximoID;
 	
 	public ListaOrdenadaCaixinhas(){
-		atual = null;
-		primeira = null;
-		ultima = null;
-		quantidade = 0;
-		proximoID = 1;
+		this.atual = null;
+		this.primeira = null;
+		this.ultima = null;
+		this.quantidade = 0;
+		this.proximoID = 1;
 	}
 
-	public void inserirOrdenado(int elemento){
-		
+	public void inserirOrdenado(int elemento) {
 		if(quantidade == 0){
-	
-    			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, this.proximoID);
-			primeira = caixinhaInserida;		
-			ultima = caixinhaInserida;
-			quantidade++;
-           		proximoID++;
-
+			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, this.proximoID);
+			this.primeira = caixinhaInserida;		
+			this.ultima = caixinhaInserida;
+			this.quantidade++;
+           	this.proximoID++;
 		} else {
-			
 			inserirFake(elemento);
-			
-			CaixinhaInt caixinhaAtual = primeira;
-			
-
+			CaixinhaInt caixinhaAtual = this.primeira;
 			while(elemento > caixinhaAtual.getElemento()){
-		
 				caixinhaAtual = caixinhaAtual.getProxima();
 			}
-
-			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, proximoID);
+			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, this.proximoID);
 			CaixinhaInt caixinhaAnterior = caixinhaAtual.getAnterior();
 			caixinhaAnterior.setProxima(caixinhaInserida);
-			caixinhaAtual.setAnterior(caixinhaInserida);	
-			
+			caixinhaAtual.setAnterior(caixinhaInserida);
 			removerFake();
-		}	
-
+		}
 	}
 
 	public int buscar(int ID){
-		if(proximoID > ID && ID > 0){
-			CaixinhaInt caixinhaProcurada = primeira;
-			while(caixinhaProcurada.getID != ID){
-				caixinhaProcurada = caixinhaProcurada.getProxima;
+		if(this.proximoID > ID && ID > 0){
+			CaixinhaInt caixinhaProcurada = this.primeira;
+			while(caixinhaProcurada.getID() != ID){
+				caixinhaProcurada = caixinhaProcurada.getProxima();
 			}
-			return caixinhaProcurada.getElemento;
+			return caixinhaProcurada.getElemento();
 		} else {
-	
-	
+			
+		}
+		return 0; //Só pra não dar erro
 	}
 
-	public void excluir(int ID){
+	public void excluir(int ID) {
 		if(proximoID > ID && ID > 0){
 			CaixinhaInt caixinhaExcluida = primeira;
-			while(caixinhaExcluida.getID != ID){
-				caixinhaExcluida = caixinhaExcluida.getProxima;
+			while(caixinhaExcluida.getID() != ID){
+				caixinhaExcluida = caixinhaExcluida.getProxima();
 			}
-			CaixinhaInt proximaCaixinha = caixinhaExcluida.getProxima;
-			CaixinhaInt caixinhaAnterior = caixinhaExcluida.getAnterior;
+			CaixinhaInt proximaCaixinha = caixinhaExcluida.getProxima();
+			CaixinhaInt caixinhaAnterior = caixinhaExcluida.getAnterior();
 			caixinhaAnterior.setProxima(proximaCaixinha);
 			proximaCaixinha.setAnterior(caixinhaAnterior);
 		} else {
+			
+		}
 	}
 
-
-	
-	public void insereDepoisAtual(int elemento){
-		
+	public void insereDepoisAtual(int elemento) {
 		if(this.atual != null){
-		
 			if(elemento > this.atual.getElemento()){
-				
 				CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, proximoID);
 				CaixinhaInt proximaCaixinha = this.atual.getProxima();
 				this.atual.setProxima(caixinhaInserida);
@@ -99,11 +86,8 @@ public class ListaOrdenadaCaixinhas{
 	}		
 
 	public void insereAntesAtual(int elemento){
-		
 		if(this.atual != null){
-
 			if(elemento < this.atual.getElemento()) {
-
 				CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, proximoID);
 				CaixinhaInt caixinhaAnterior = this.atual.getAnterior();
 				this.atual.setAnterior(caixinhaInserida);
@@ -112,12 +96,11 @@ public class ListaOrdenadaCaixinhas{
 				caixinhaInserida.setProxima(atual);	
 			} else { 
 			
-			} 
+			}
 		}
 	}
 
-	public void excluiAtual() throws NullPointerException { //--> ISSO MESMO?
-			
+	public void excluiAtual() throws Exception {
 		if(this.atual != null){
 			CaixinhaInt proximaCaixinha = this.atual.getProxima();
 			CaixinhaInt caixinhaAnterior = this.atual.getAnterior();
@@ -125,7 +108,7 @@ public class ListaOrdenadaCaixinhas{
 			caixinhaAnterior.setProxima(proximaCaixinha);
 			this.atual = null;
 		} else {
-			throw new NullPointerException(); //--> ISSO MESMO?
+			throw new Exception("Lista vazia!");
 		}
 	}
 
@@ -139,7 +122,6 @@ public class ListaOrdenadaCaixinhas{
 
 	private void cursorParaPrimeira(){
 		this.atual = primeira;
-
 	}
 
 	private void avancaCursor(int quantidade){
@@ -172,13 +154,12 @@ public class ListaOrdenadaCaixinhas{
 		this.quantidade--;
 	}
 
-	public int imprimeListaOrdenada(){
+	public void imprimeListaOrdenada(){
 		CaixinhaInt caixinhaImpressa = this.primeira;		
-		for(int i=0; quantidade > i; i++;){
-			System.out.println(caixinhaImpressa.getElemento);
-			caixinhaImpressa = caixinhaImpressa.getProxima;
+		for(int i=0; quantidade > i; i++){
+			System.out.println(caixinhaImpressa.getElemento());
+			caixinhaImpressa = caixinhaImpressa.getProxima();
 		}
 	}
-
 
 }

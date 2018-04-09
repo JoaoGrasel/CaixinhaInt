@@ -7,17 +7,16 @@ package trabalho1estruturasdedados;
 
 public class CaixinhaInt{
 
-	int elemento;
-    	int ID;
-    	CaixinhaInt proxima;
-	CaixinhaInt anterior;
-    
+	private int elemento;
+    private int ID;
+    private CaixinhaInt proxima;
+	private CaixinhaInt anterior;
 
 	public CaixinhaInt(int elemento, int ID){
 		this.elemento = elemento;
 		this.proxima = proxima;
 		this.anterior = anterior;
-        	this.ID = ID;
+        this.ID = ID;
 	}
 
 	public void setElemento(int elemento){
@@ -47,6 +46,5 @@ public class CaixinhaInt{
 	public int getID(){
 		return ID;
  	}
-    
     
 }
