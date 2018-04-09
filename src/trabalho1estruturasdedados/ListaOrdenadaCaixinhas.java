@@ -53,6 +53,31 @@ public class ListaOrdenadaCaixinhas{
 
 	}
 
+	public int buscar(int ID){
+		if(proximoID > ID && ID > 0){
+			CaixinhaInt caixinhaProcurada = primeira;
+			while(caixinhaProcurada.getID != ID){
+				caixinhaProcurada = caixinhaProcurada.getProxima;
+			}
+			return caixinhaProcurada.getElemento;
+		} else {
+	
+	
+	}
+
+	public void excluir(int ID){
+		if(proximoID > ID && ID > 0){
+			CaixinhaInt caixinhaExcluida = primeira;
+			while(caixinhaExcluida.getID != ID){
+				caixinhaExcluida = caixinhaExcluida.getProxima;
+			}
+			CaixinhaInt proximaCaixinha = caixinhaExcluida.getProxima;
+			CaixinhaInt caixinhaAnterior = caixinhaExcluida.getAnterior;
+			caixinhaAnterior.setProxima(proximaCaixinha);
+			proximaCaixinha.setAnterior(caixinhaAnterior);
+		} else {
+	}
+
 
 	
 	public void insereDepoisAtual(int elemento){
