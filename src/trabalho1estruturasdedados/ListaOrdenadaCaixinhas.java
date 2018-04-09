@@ -22,7 +22,7 @@ public class ListaOrdenadaCaixinhas{
 	}
 
 	public void inserirOrdenado(int elemento) {
-		if(quantidade == 0){
+		if(this.quantidade == 0){
 			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, this.proximoID);
 			this.primeira = caixinhaInserida;		
 			this.ultima = caixinhaInserida;
@@ -42,21 +42,19 @@ public class ListaOrdenadaCaixinhas{
 		}
 	}
 
-	public int buscar(int ID){
+	public int buscar(int ID) throws Exception {
 		if(this.proximoID > ID && ID > 0){
 			CaixinhaInt caixinhaProcurada = this.primeira;
 			while(caixinhaProcurada.getID() != ID){
 				caixinhaProcurada = caixinhaProcurada.getProxima();
 			}
 			return caixinhaProcurada.getElemento();
-		} else {
-			
 		}
-		return 0; //Só pra não dar erro
+		throw new Exception("ID inexistente!");
 	}
 
-	public void excluir(int ID) {
-		if(proximoID > ID && ID > 0){
+	public void excluir(int ID) throws Exception {
+		if(proximoID > ID && ID > 0) {
 			CaixinhaInt caixinhaExcluida = primeira;
 			while(caixinhaExcluida.getID() != ID){
 				caixinhaExcluida = caixinhaExcluida.getProxima();
@@ -65,9 +63,8 @@ public class ListaOrdenadaCaixinhas{
 			CaixinhaInt caixinhaAnterior = caixinhaExcluida.getAnterior();
 			caixinhaAnterior.setProxima(proximaCaixinha);
 			proximaCaixinha.setAnterior(caixinhaAnterior);
-		} else {
-			
 		}
+		throw new Exception("ID inexistente!");
 	}
 
 	public void insereDepoisAtual(int elemento) {

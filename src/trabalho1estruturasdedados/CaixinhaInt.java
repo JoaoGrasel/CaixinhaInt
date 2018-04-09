@@ -14,8 +14,8 @@ public class CaixinhaInt{
 
 	public CaixinhaInt(int elemento, int ID){
 		this.elemento = elemento;
-		this.proxima = proxima;
-		this.anterior = anterior;
+		this.proxima = null;
+		this.anterior = null;
         this.ID = ID;
 	}
 
