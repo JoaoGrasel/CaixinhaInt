@@ -11,25 +11,25 @@ public class ListaOrdenadaCaixinhas{
 	CaixinhaInt primeira;
 	CaixinhaInt ultima;
 	int quantidade;
-    int proximoID;
+    	int proximoID;
 	
 	public ListaOrdenadaCaixinhas(){
 		atual = null;
 		primeira = null;
 		ultima = null;
 		quantidade = 0;
-        proximoID = 1;
+		proximoID = 1;
 	}
 
 	public void inserirOrdenado(int elemento){
 		
 		if(quantidade == 0){
 	
-            CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, this.proximoID);
+    			CaixinhaInt caixinhaInserida = new CaixinhaInt(elemento, this.proximoID);
 			primeira = caixinhaInserida;		
 			ultima = caixinhaInserida;
 			quantidade++;
-            proximoID++;
+           		proximoID++;
 
 		} else {
 			
@@ -146,5 +146,14 @@ public class ListaOrdenadaCaixinhas{
 		this.ultima = caixinhaAnterior;
 		this.quantidade--;
 	}
+
+	public int imprimeListaOrdenada(){
+		CaixinhaInt caixinhaImpressa = this.primeira;		
+		for(int i=0; quantidade > i; i++;){
+			System.out.println(caixinhaImpressa.getElemento);
+			caixinhaImpressa = caixinhaImpressa.getProxima;
+		}
+	}
+
 
 }
