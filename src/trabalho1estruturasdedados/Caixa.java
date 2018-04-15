@@ -5,44 +5,45 @@
  */
 package trabalho1estruturasdedados;
 
-public class CaixinhaInt{
+public class Caixa implements IBuscavel {
 
-	private int elemento;
-    private int ID;
-    private CaixinhaInt proxima;
-	private CaixinhaInt anterior;
+	private final int ID;
+	private IBuscavel elemento;
+    private Caixa proxima;
+	private Caixa anterior;
 
-	public CaixinhaInt(int elemento, int ID){
+	public Caixa(IBuscavel elemento, int ID){
 		this.elemento = elemento;
 		this.proxima = null;
 		this.anterior = null;
         this.ID = ID;
 	}
 
-	public void setElemento(int elemento){
+	public void setElemento(IBuscavel elemento) {
 		this.elemento = elemento;
 	}	
 	
-	public void setProxima(CaixinhaInt proxima){
+	public void setProxima(Caixa proxima) {
 		this.proxima = proxima;
 	}	
 
-	public void setAnterior(CaixinhaInt anterior){
+	public void setAnterior(Caixa anterior) {
 		this.anterior = anterior;	
 	}	
 
-	public int getElemento(){
+	public IBuscavel getElemento() {
 		return elemento;
 	}	
 
-	public CaixinhaInt getProxima(){
+	public Caixa getProxima() {
 		return proxima;
 	}	
 
-	public CaixinhaInt getAnterior(){
+	public Caixa getAnterior() {
 		return anterior;
 	}
 	
+	@Override
 	public int getID(){
 		return ID;
  	}
