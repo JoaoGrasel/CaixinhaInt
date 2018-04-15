@@ -33,6 +33,7 @@ public class ListaOrdenada extends ListaSimples {
 				caixaInserida.setProxima(caixaAtual);
 				caixaInserida.setAnterior(this.ultima);
 				this.ultima.setProxima(caixaInserida);
+				this.primeira = caixaInserida;
 			} else {
 				Caixa caixaAnterior = caixaAtual.getAnterior();
 				caixaAnterior.setProxima(caixaInserida);
@@ -57,23 +58,17 @@ public class ListaOrdenada extends ListaSimples {
 	}
 	
 	private void removerFake() {
-//		if(this.quantidade == 2) {
-//			this.primeira.setProxima(null);
-//			this.primeira.setAnterior(null);
-//			this.ultima = this.primeira;
-//		} else {
-			Caixa caixaAnterior = this.ultima.getAnterior();
-			caixaAnterior.setProxima(this.primeira);
-			this.primeira.setAnterior(caixaAnterior);
-			this.ultima = caixaAnterior;	
-//		}
+		Caixa caixaAnterior = this.ultima.getAnterior();
+		caixaAnterior.setProxima(this.primeira);
+		this.primeira.setAnterior(caixaAnterior);
+		this.ultima = caixaAnterior;
 		this.quantidade--;
 	}
 
 	public void imprimeListaOrdenada() {
 		Caixa caixaImpressa = this.primeira;
 		for(int i = 0; i < this.quantidade; i++){
-			System.out.println(caixaImpressa.getElemento().getID());
+			System.out.println("ID: " + caixaImpressa.getElemento().getID());
 			caixaImpressa = caixaImpressa.getProxima();
 		}
 	}

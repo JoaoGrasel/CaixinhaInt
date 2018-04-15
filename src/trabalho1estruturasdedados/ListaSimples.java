@@ -73,8 +73,22 @@ public class ListaSimples {
 			Caixa caixaExcluida = apontaCursor(ID);
 			Caixa proximaCaixa = caixaExcluida.getProxima();
 			Caixa caixaAnterior = caixaExcluida.getAnterior();
-			caixaAnterior.setProxima(proximaCaixa);
-			proximaCaixa.setAnterior(caixaAnterior);
+			if(proximaCaixa == null && caixaAnterior == null) {
+				this.primeira = null;
+				this.ultima = null;
+				this.atual = null;
+			} else if(caixaAnterior == null && proximaCaixa != null) {
+				this.primeira = proximaCaixa;
+				this.atual = proximaCaixa;
+				proximaCaixa.setAnterior(this.ultima);
+			} else if(caixaAnterior != null && proximaCaixa == null) {
+				caixaAnterior.setProxima(this.primeira);
+				this.ultima = caixaAnterior;
+				this.atual = caixaAnterior;
+			} else {
+				caixaAnterior.setProxima(proximaCaixa);
+				proximaCaixa.setAnterior(caixaAnterior);
+			}
 			this.quantidade--;	
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -94,6 +108,7 @@ public class ListaSimples {
 				this.atual.setProxima(caixaInserida);
 				caixaInserida.setAnterior(this.atual);
 				this.atual = caixaInserida;
+				this.ultima = caixaInserida;
 			}
 			this.quantidade++;
 		} else {
