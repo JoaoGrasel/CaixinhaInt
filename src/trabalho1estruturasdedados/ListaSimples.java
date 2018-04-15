@@ -21,7 +21,7 @@ public class ListaSimples {
 	
 	private Caixa apontaCursor(int ID) throws Exception {
 		Caixa caixaProcurada = this.primeira;
-		while(caixaProcurada.getID() != ID) {
+		while(caixaProcurada.getElemento().getID() != ID) {
 			if(caixaProcurada.equals(this.ultima)) throw new Exception("ID inexistente!");
 			caixaProcurada = caixaProcurada.getProxima();
 		}
@@ -53,12 +53,15 @@ public class ListaSimples {
 		return apontaCursor(ID).getElemento();
 	}
 	
-	public void inserir(IBuscavel elemento, int ID) {
+	public void inserir(IBuscavel elemento) {
 		try {
 			if(this.atual == null) {
-				this.atual = new Caixa(elemento, ID);
+				this.atual = new Caixa(elemento);
+				this.primeira = this.atual;
+				this.ultima = this.atual;
+				this.quantidade++;
 			} else {
-				insereDepoisAtual(elemento, ID);
+				insereDepoisAtual(elemento);
 			}	
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -78,23 +81,29 @@ public class ListaSimples {
 		}
 	}
 
-	public void insereDepoisAtual(IBuscavel elemento, int ID) throws Exception {
+	public void insereDepoisAtual(IBuscavel elemento) throws Exception {
 		if(this.atual != null) {
-			Caixa caixaInserida = new Caixa(elemento, ID);
-			Caixa proximaCaixa = this.atual.getProxima();
-			this.atual.setProxima(caixaInserida);
-			proximaCaixa.setAnterior(caixaInserida);
-			caixaInserida.setAnterior(this.atual);
-			caixaInserida.setProxima(proximaCaixa);
+			Caixa caixaInserida = new Caixa(elemento);
+			if(this.atual.getProxima() != null) {
+				Caixa proximaCaixa = this.atual.getProxima();
+				this.atual.setProxima(caixaInserida);
+				proximaCaixa.setAnterior(caixaInserida);
+				caixaInserida.setAnterior(this.atual);
+				caixaInserida.setProxima(proximaCaixa);
+			} else {
+				this.atual.setProxima(caixaInserida);
+				caixaInserida.setAnterior(this.atual);
+				this.atual = caixaInserida;
+			}
 			this.quantidade++;
 		} else {
 			throw new Exception("Nenhum elemento na lista!");
 		}
 	}		
 
-	public void insereAntesAtual(IBuscavel elemento, int ID) throws Exception {
+	public void insereAntesAtual(IBuscavel elemento) throws Exception {
 		if(this.atual != null) {
-			Caixa caixaInserida = new Caixa(elemento, ID);
+			Caixa caixaInserida = new Caixa(elemento);
 			Caixa caixaAnterior = this.atual.getAnterior();
 			this.atual.setAnterior(caixaInserida);
 			caixaAnterior.setProxima(caixaInserida);
